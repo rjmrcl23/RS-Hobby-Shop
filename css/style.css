@@ -1,0 +1,64 @@
+/* ======================================================
+   RS Hobby Shop v0.1
+   Main Stylesheet
+====================================================== */
+
+@import url("sidebar.css");
+@import url("header.css");
+@import url("dashboard.css");
+@import url("responsive.css");
+
+:root{
+
+    --bg:#08111F;
+
+    --sidebar:#101B2D;
+
+    --card:#172437;
+
+    --border:#223451;
+
+    --primary:#27D6D1;
+
+    --secondary:#1FA3FF;
+
+    --text:#FFFFFF;
+
+    --text-light:#B8C3D4;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html,
+body{
+
+    height:100%;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+.app{
+
+    display:flex;
+
+    min-height:100vh;
+
+}

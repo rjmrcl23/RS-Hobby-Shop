@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RS Hobby Shop | Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <script src="https://kit.fontawesome.com/6b8d9f0c89.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>📊 Dashboard</h2>
+            <p class="text-muted mb-0">
+                Overview of your basketball card collection.
+            </p>
+        </div>
+
+        <a href="collection.html" class="btn btn-primary">
+            <i class="fa-solid fa-layer-group"></i>
+            Collection
+        </a>
+    </div>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6>Total Cards</h6>
+                    <h2 id="dashboardTotalCards">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6>Total Value</h6>
+                    <h2 id="dashboardValue">₱0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6>For Sale</h6>
+                    <h2 id="dashboardForSale">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h6>Wishlist</h6>
+                    <h2 id="dashboardWishlist">0</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+            <strong>Recently Added Cards</strong>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover mb-0">
+
+                <thead>
+
+                <tr>
+                    <th>Player</th>
+                    <th>Brand</th>
+                    <th>Set</th>
+                    <th>Status</th>
+                    <th>Value</th>
+                </tr>
+
+                </thead>
+
+                <tbody id="recentCards">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/dashboard.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

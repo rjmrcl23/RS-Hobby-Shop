@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Collection | RS Hobby Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+
+        <div class="menu-label">MAIN</div>
+
+        <nav>
+
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a class="active" href="collection.html">
+                <i class="fa-solid fa-folder"></i>
+                My Collection
+            </a>
+
+            <a href="marketplace.html">
+                <i class="fa-solid fa-store"></i>
+                Marketplace
+            </a>
+
+            <a href="myshop.html">
+                <i class="fa-solid fa-shop"></i>
+                My Shop
+            </a>
+
+            <a href="auctions.html">
+                <i class="fa-solid fa-gavel"></i>
+                Auctions
+            </a>
+
+            <a href="wishlist.html">
+                <i class="fa-solid fa-heart"></i>
+                Wishlist
+            </a>
+
+            <a href="orders.html">
+                <i class="fa-solid fa-box"></i>
+                Orders
+            </a>
+
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+
+        </nav>
+
+        <div class="profile">
+            <div class="profile-avatar">RJ</div>
+            <div>
+                <h6>RJ Marcelo</h6>
+                <small>Collector & Seller</small>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <div>
+                <h2>📚 My Collection</h2>
+                <p>Manage your basketball card collection.</p>
+            </div>
+
+            <button
+                class="btn btn-info"
+                data-bs-toggle="modal"
+                data-bs-target="#addCardModal">
+                <i class="fa-solid fa-plus"></i>
+                Add Card
+            </button>
+
+        </div>
+
+        <div class="row mb-4">
+
+            <div class="col-md-5">
+
+                <input
+                    id="searchCards"
+                    type="text"
+                    class="form-control"
+                    placeholder="🔍 Search Player, Brand, Set or Card #">
+
+            </div>
+
+        </div>
+
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-3">
+                <div class="card bg-dark border-secondary">
+                    <div class="card-body text-center">
+                        <h6 class="text-secondary">Total Cards</h6>
+                        <h2 id="totalCards" class="text-info">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card bg-dark border-secondary">
+                    <div class="card-body text-center">
+                        <h6 class="text-secondary">Collection Value</h6>
+                        <h2 id="collectionValue" class="text-success">₱0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card bg-dark border-secondary">
+                    <div class="card-body text-center">
+                        <h6 class="text-secondary">For Sale</h6>
+                        <h2 id="forSaleCount" class="text-warning">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card bg-dark border-secondary">
+                    <div class="card-body text-center">
+                        <h6 class="text-secondary">Wishlist</h6>
+                        <h2 id="wishlistCount" class="text-danger">0</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card bg-dark border-secondary">
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-dark table-hover align-middle">
+
+                        <thead>
+
+                        <tr>
+                            <th width="90">Photo</th>
+                            <th>Player</th>
+                            <th>Brand</th>
+                            <th>Set</th>
+                            <th>Year</th>
+                            <th>Card #</th>
+                            <th>Condition</th>
+                            <th>Status</th>
+                            <th>Value</th>
+                            <th width="120">Actions</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="collectionTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<div class="modal fade" id="addCardModal" tabindex="-1">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content bg-dark text-white">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">Basketball Card</h5>
+
+                <button
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label">Card Photo</label>
+
+                        <input
+                            id="cardImage"
+                            type="file"
+                            accept="image/*"
+                            class="form-control">
+
+                        <div class="text-center mt-3">
+
+                            <img
+                                id="imagePreview"
+                                src="../images/logos/logo.png"
+                                class="img-fluid rounded border"
+                                style="max-height:320px;object-fit:contain;">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label class="form-label">Player</label>
+                                <input id="player" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Brand</label>
+                                <input id="brand" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Set</label>
+                                <input id="set" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Year</label>
+                                <input id="year" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Card #</label>
+                                <input id="number" class="form-control">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Condition</label>
+
+                                <select id="condition" class="form-select">
+                                    <option>Mint</option>
+                                    <option>Near Mint</option>
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Status</label>
+
+                                <select id="status" class="form-select">
+                                    <option>PC</option>
+                                    <option>For Sale</option>
+                                    <option>Auction</option>
+                                    <option>Wishlist</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Value (₱)</label>
+
+                                <input
+                                    id="value"
+                                    type="number"
+                                    class="form-control">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button
+                    id="saveCard"
+                    class="btn btn-info">
+                    Save Card
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/collection.js"></script>
+<script src="../js/app.js"></script>
+
+</body>
+</html>

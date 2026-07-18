@@ -1,0 +1,163 @@
+/* ======================================================
+   Header
+====================================================== */
+
+.main-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:30px;
+
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+/* ---------- TITLE ---------- */
+
+.topbar h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.topbar p{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+/* ---------- RIGHT SIDE ---------- */
+
+.top-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-box{
+
+    width:420px;
+
+    height:52px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    transition:.25s;
+
+}
+
+.search-box:hover{
+
+    border-color:var(--primary);
+
+}
+
+.search-box i{
+
+    color:var(--text-light);
+
+}
+
+.search-box input{
+
+    background:none;
+
+    border:none;
+
+    outline:none;
+
+    color:white;
+
+    width:100%;
+
+    margin-left:12px;
+
+    font-size:15px;
+
+}
+
+.search-box input::placeholder{
+
+    color:#7F8DA3;
+
+}
+
+/* ---------- BELL ---------- */
+
+.notify{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.notify:hover{
+
+    background:linear-gradient(135deg,#27D6D1,#1FA3FF);
+
+}
+
+/* ---------- HEADER SHADOW ---------- */
+
+.topbar{
+
+    padding-bottom:25px;
+
+    border-bottom:1px solid var(--border);
+
+}
