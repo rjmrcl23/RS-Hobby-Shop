@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace | RS Hobby Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/6b8d9f0c89.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+
+        <div class="menu-label">MAIN</div>
+
+        <nav>
+
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="collection.html">
+                <i class="fa-solid fa-folder"></i>
+                My Collection
+            </a>
+
+            <a class="active" href="marketplace.html">
+                <i class="fa-solid fa-store"></i>
+                Marketplace
+            </a>
+
+            <a href="myshop.html">
+                <i class="fa-solid fa-shop"></i>
+                My Shop
+            </a>
+
+            <a href="auctions.html">
+                <i class="fa-solid fa-gavel"></i>
+                Auctions
+            </a>
+
+            <a href="wishlist.html">
+                <i class="fa-solid fa-heart"></i>
+                Wishlist
+            </a>
+
+            <a href="orders.html">
+                <i class="fa-solid fa-box"></i>
+                Orders
+            </a>
+
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+
+        </nav>
+
+        <div class="profile">
+            <div class="profile-avatar">RJ</div>
+            <div>
+                <h6>RJ Marcelo</h6>
+                <small>Collector & Seller</small>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="topbar mb-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h2>🛒 Marketplace</h2>
+                <p class="text-muted mb-0">Browse available card listings synced from your collection.</p>
+            </div>
+            <a href="collection.html" class="btn btn-primary">
+                <i class="fa-solid fa-layer-group"></i>
+                My Collection
+            </a>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <input id="marketplaceSearch" type="text" class="form-control" placeholder="Search Player, Brand, Set or Year">
+            </div>
+            <div class="col-md-2">
+                <select id="marketplaceBrandFilter" class="form-select">
+                    <option value="all">All Brands</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="marketplaceStatusFilter" class="form-select">
+                    <option value="all">All Status</option>
+                    <option value="For Sale" selected>For Sale</option>
+                    <option value="Auction">Auction</option>
+                    <option value="Wishlist">Wishlist</option>
+                    <option value="PC">PC</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="marketplaceConditionFilter" class="form-select">
+                    <option value="all">All Conditions</option>
+                    <option value="Mint">Mint</option>
+                    <option value="Near Mint">Near Mint</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="marketplacePriceOrder" class="form-select">
+                    <option value="none">Price Default</option>
+                    <option value="asc">Price Low → High</option>
+                    <option value="desc">Price High → Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="marketplaceList" class="row g-3"></div>
+
+        <div id="marketplaceEmpty" class="text-center text-muted py-5" style="display:none;">
+            No marketplace listings match your criteria.
+        </div>
+
+    </main>
+
+</div>
+
+<div class="modal fade" id="listingModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="listingModalTitle">Listing Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <img id="listingModalImage" src="../images/logos/logo.png" alt="Listing image" class="img-fluid rounded">
+                    </div>
+                    <div class="col-lg-7">
+                        <dl class="row mb-3 text-white-75">
+                            <dt class="col-sm-4">Player</dt>
+                            <dd class="col-sm-8" id="listingModalPlayer">-</dd>
+                            <dt class="col-sm-4">Brand</dt>
+                            <dd class="col-sm-8" id="listingModalBrand">-</dd>
+                            <dt class="col-sm-4">Set</dt>
+                            <dd class="col-sm-8" id="listingModalSet">-</dd>
+                            <dt class="col-sm-4">Year</dt>
+                            <dd class="col-sm-8" id="listingModalYear">-</dd>
+                            <dt class="col-sm-4">Condition</dt>
+                            <dd class="col-sm-8" id="listingModalCondition">-</dd>
+                            <dt class="col-sm-4">Seller</dt>
+                            <dd class="col-sm-8" id="listingModalSeller">RS Hobby Shop</dd>
+                            <dt class="col-sm-4">Price</dt>
+                            <dd class="col-sm-8" id="listingModalPrice">₱0</dd>
+                            <dt class="col-sm-4">Quantity</dt>
+                            <dd class="col-sm-8" id="listingModalQuantity">N/A</dd>
+                            <dt class="col-sm-4">Notes</dt>
+                            <dd class="col-sm-8" id="listingModalNotes">N/A</dd>
+                            <dt class="col-sm-4">Status</dt>
+                            <dd class="col-sm-8" id="listingModalStatus">-</dd>
+                        </dl>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button id="wishlistButton" type="button" class="btn btn-outline-light">Add to Wishlist</button>
+                            <button id="contactButton" type="button" class="btn btn-outline-light">Contact Seller</button>
+                            <button id="shareButton" type="button" class="btn btn-outline-light">Share Listing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="../js/marketplace.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

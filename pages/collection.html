@@ -108,6 +108,23 @@
 
             </div>
 
+            <div class="col-md-4">
+                <select id="sortField" class="form-select">
+                    <option value="player" selected>Sort by Player</option>
+                    <option value="brand">Sort by Brand</option>
+                    <option value="year">Sort by Year</option>
+                    <option value="value">Sort by Value</option>
+                    <option value="status">Sort by Status</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select id="sortOrder" class="form-select">
+                    <option value="asc" selected>Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+
         </div>
 
         <div class="row g-3 mb-4">
@@ -162,14 +179,14 @@
 
                         <tr>
                             <th width="90">Photo</th>
-                            <th>Player</th>
-                            <th>Brand</th>
+                            <th data-sort-field="player">Player</th>
+                            <th data-sort-field="brand">Brand</th>
                             <th>Set</th>
-                            <th>Year</th>
+                            <th data-sort-field="year">Year</th>
                             <th>Card #</th>
                             <th>Condition</th>
-                            <th>Status</th>
-                            <th>Value</th>
+                            <th data-sort-field="status">Status</th>
+                            <th data-sort-field="value">Value</th>
                             <th width="120">Actions</th>
                         </tr>
 
