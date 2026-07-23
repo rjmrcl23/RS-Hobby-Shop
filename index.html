@@ -53,7 +53,7 @@
 
         <nav>
 
-            <a class="active" href="#">
+            <a class="active" href="index.html">
                 <i class="fa-solid fa-house"></i>
                 <span>Home</span>
             </a>
@@ -63,39 +63,44 @@
                 <span>My Collection</span>
             </a>
 
-            <a href="#">
+            <a href="pages/marketplace.html">
                 <i class="fa-solid fa-store"></i>
                 <span>Marketplace</span>
             </a>
 
-            <a href="#">
+            <a href="pages/myshop.html">
                 <i class="fa-solid fa-shop"></i>
                 <span>My Shop</span>
             </a>
 
-            <a href="#">
+            <a href="pages/auctions.html">
                 <i class="fa-solid fa-gavel"></i>
                 <span>Auctions</span>
             </a>
 
-            <a href="#">
+            <a href="pages/wishlist.html">
                 <i class="fa-solid fa-heart"></i>
                 <span>Wishlist</span>
             </a>
 
-            <a href="#">
+            <a href="pages/orders.html">
                 <i class="fa-solid fa-box"></i>
                 <span>Orders</span>
             </a>
 
-            <a href="#">
+            <a href="pages/analytics.html">
                 <i class="fa-solid fa-chart-line"></i>
                 <span>Analytics</span>
             </a>
 
-            <a href="#">
-                <i class="fa-solid fa-gear"></i>
+            <a href="pages/settings.html">
+                <i class="fa-solid fa-cog"></i>
                 <span>Settings</span>
+            </a>
+
+            <a href="pages/dashboard.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
             </a>
 
         </nav>
@@ -143,12 +148,13 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
 
                     <input
+                        id="homeSearch"
                         type="text"
                         placeholder="Search cards, players, sets...">
 
                 </div>
 
-                <button class="notify">
+                <button id="homeNotifications" class="notify" type="button" aria-label="Show recent activity">
 
                     <i class="fa-solid fa-bell"></i>
 
@@ -157,6 +163,8 @@
             </div>
 
         </header>
+
+        <div id="homeActivity" class="card bg-dark border-secondary mb-4 d-none"><div class="card-body"><div class="d-flex justify-content-between"><h6>Recent Activity</h6><button id="closeHomeActivity" class="btn-close btn-close-white"></button></div><div id="homeActivityList" class="small text-muted"></div></div></div>
 
         <!-- DASHBOARD -->
 
@@ -170,7 +178,7 @@
 
                         <h5>Portfolio Value</h5>
 
-                        <h2>₱0.00</h2>
+                        <h2 id="homePortfolioValue">₱0.00</h2>
 
                     </div>
 
@@ -182,7 +190,7 @@
 
                         <h5>Total Cards</h5>
 
-                        <h2>0</h2>
+                        <h2 id="homeTotalCards">0</h2>
 
                     </div>
 
@@ -194,7 +202,7 @@
 
                         <h5>For Sale</h5>
 
-                        <h2>0</h2>
+                        <h2 id="homeForSaleCount">0</h2>
 
                     </div>
 
@@ -206,7 +214,7 @@
 
                         <h5>Auctions</h5>
 
-                        <h2>0</h2>
+                        <h2 id="homeAuctionCount">0</h2>
 
                     </div>
 
@@ -222,6 +230,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="js/storage.js"></script>
 <script src="js/app.js"></script>
 
 </body>
