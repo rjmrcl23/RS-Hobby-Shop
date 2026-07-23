@@ -35,8 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderBrandOptions(listings) {
+        const selectedBrand = brandFilter.value || "all";
         const brands = Array.from(new Set(listings.map(item => item.brand).filter(Boolean))).sort();
         brandFilter.innerHTML = `<option value="all">All Brands</option>` + brands.map(brand => `<option value="${brand}">${brand}</option>`).join("");
+        brandFilter.value = brands.includes(selectedBrand) ? selectedBrand : "all";
     }
 
     function renderStats(listings) {
@@ -65,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const priceMatch = priceTerm === "all" || (
                 priceTerm === "low" ? (parseFloat(item.price || item.value || 0) || 0) <= 100 : (parseFloat(item.price || item.value || 0) || 0) > 100
             );
-            const recentMatch = recentTerm === "all" || recentTerm === "recent";
+            const updatedAt = Number(item.updatedAt || item.createdAt || 0);
+            const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+            const recentMatch = recentTerm === "all" || updatedAt >= sevenDaysAgo;
             return searchMatch && statusMatch && brandMatch && priceMatch && recentMatch;
         });
     }
@@ -117,15 +121,39 @@ document.addEventListener("DOMContentLoaded", () => {
         const listings = getListings();
         const index = listings.findIndex(item => item.id === id);
         if (index === -1) return;
+
+        const previousStatus = listings[index].status;
         listings[index].status = status;
         listings[index].updatedAt = Date.now();
+
+        if (status === "Sold" && previousStatus !== "Sold") {
+            const cards = getCards();
+            const card = cards.find(entry => entry.id === listings[index].sourceCardId) || cards.find(entry => entry.player === listings[index].player && entry.brand === listings[index].brand && entry.set === listings[index].set);
+            const existingOrders = getOrders();
+            const nextOrders = [...existingOrders, createOrderFromListing(listings[index], card)];
+            saveOrders(nextOrders);
+            addActivity(`Created an order for ${listings[index].player || "a sold card"}`, "success");
+        }
+
         saveListings(listings);
         renderListings();
     }
 
     function deleteListing(id) {
+        const listing = getListings().find(item => item.id === id);
+        if (!listing) return;
+
+        const cards = getCards();
+        const cardIndex = cards.findIndex(card => card.id === listing.sourceCardId);
+        if (cardIndex !== -1) {
+            cards[cardIndex].status = "PC";
+            cards[cardIndex].updatedAt = Date.now();
+            saveCards(cards);
+        }
+
         const listings = getListings().filter(item => item.id !== id);
         saveListings(listings);
+        addActivity(`${listings[index].player || "Listing"} marked ${status}`, "info");
         renderListings();
     }
 
@@ -155,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listings[index].tags = editTags.value.split(",").map(tag => tag.trim()).filter(Boolean);
         listings[index].updatedAt = Date.now();
         saveListings(listings);
+        addActivity("Removed a shop listing", "warning");
         bootstrap.Modal.getInstance(editModal)?.hide();
         renderListings();
     });
@@ -166,16 +195,45 @@ document.addEventListener("DOMContentLoaded", () => {
         const cards = getCards().filter(card => card.status === "For Sale");
         const listings = getListings();
         const synced = [];
-        cards.forEach(card => {
+
+        cards.forEach((card, index) => {
             const signature = `${card.player || ""}|${card.brand || ""}|${card.set || ""}|${card.year || ""}|${card.number || ""}|${card.condition || ""}|${card.value || ""}|${card.image || ""}`;
-            const existing = listings.find(item => item.sourceSignature === signature);
+            const existing = listings.find(item =>
+                (card.id && item.sourceCardId === card.id) || item.sourceSignature === signature
+            );
+
             if (existing) {
-                synced.push({ ...existing, image: card.image || existing.image || "", player: card.player || existing.player, brand: card.brand || existing.brand, set: card.set || existing.set, year: card.year || existing.year, condition: card.condition || existing.condition, value: card.value || existing.value, price: existing.price || card.value || existing.value, quantity: existing.quantity || 1, description: existing.description || card.notes || "", shippingNotes: existing.shippingNotes || "Standard shipping available", tags: existing.tags || [card.brand || "", card.set || ""].filter(Boolean), notes: card.notes || existing.notes || "", status: existing.status || "Active", updatedAt: Date.now() });
+                synced.push({
+                    ...existing,
+                    sourceCardId: card.id || existing.sourceCardId || "",
+                    sourceSignature: signature,
+                    image: card.image || existing.image || "",
+                    player: card.player || existing.player || "Unknown",
+                    brand: card.brand || existing.brand || "Unknown",
+                    set: card.set || existing.set || "Unknown",
+                    year: card.year || existing.year || "",
+                    condition: card.condition || existing.condition || "Mint",
+                    value: card.value || existing.value || "0",
+                    price: existing.price || card.value || existing.value || "0",
+                    quantity: existing.quantity || 1,
+                    description: existing.description || (card.notes || `Listed from ${card.brand || "collection"}`),
+                    shippingNotes: existing.shippingNotes || "Standard shipping available",
+                    tags: existing.tags && existing.tags.length ? existing.tags : [card.brand || "", card.set || ""].filter(Boolean),
+                    notes: card.notes || existing.notes || "",
+                    status: existing.status || "Active",
+                    updatedAt: Date.now()
+                });
             } else {
-                synced.push(createShopListingFromCard(card, synced.length));
+                synced.push(createShopListingFromCard(card, index));
             }
         });
-        if (synced.length !== listings.length) {
+
+        const hasChanged = synced.length !== listings.length || synced.some((listing, index) => {
+            const previous = listings[index];
+            return !previous || JSON.stringify(previous) !== JSON.stringify(listing);
+        });
+
+        if (hasChanged) {
             saveListings(synced);
         } else {
             renderListings();

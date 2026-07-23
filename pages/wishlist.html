@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | RS Hobby Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+        <div class="menu-label">MAIN</div>
+        <nav>
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="collection.html"><i class="fa-solid fa-folder"></i> My Collection</a>
+            <a href="marketplace.html"><i class="fa-solid fa-store"></i> Marketplace</a>
+            <a href="myshop.html"><i class="fa-solid fa-shop"></i> My Shop</a>
+            <a href="auctions.html"><i class="fa-solid fa-gavel"></i> Auctions</a>
+            <a class="active" href="wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> Orders</a>
+            <a href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a>
+            <a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <div class="topbar mb-4">
+            <div>
+                <h2>💗 Wishlist</h2>
+                <p class="text-muted mb-0">Wishlist support remains tied to collection status for now.</p>
+            </div>
+        </div>
+        <div class="card bg-dark border-secondary mb-4">
+            <div class="card-body">
+                <p class="mb-0 text-muted">Cards marked as Wishlist are already tracked in the collection and can be reviewed from there.</p>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <input id="wishlistSearch" type="text" class="form-control" placeholder="Search Wishlist cards by player, brand or set">
+            </div>
+            <div class="col-md-3">
+                <select id="wishlistBrandFilter" class="form-select">
+                    <option value="all">All Brands</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="wishlistConditionFilter" class="form-select">
+                    <option value="all">All Conditions</option>
+                    <option value="Mint">Mint</option>
+                    <option value="Near Mint">Near Mint</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button id="wishlistClearFilters" class="btn btn-outline-light w-100">Clear</button>
+            </div>
+        </div>
+
+        <div class="card bg-dark border-secondary mb-4">
+            <div class="card-body">
+                <div class="alert alert-secondary d-flex justify-content-between align-items-center mb-0" role="alert">
+                    <div><strong>Price Alerts</strong> — local price alerts will be available when connected marketplace pricing is added.</div>
+                    <span class="badge bg-secondary">Local collection</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-dark border-secondary">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Player</th>
+                                <th>Brand</th>
+                                <th>Set</th>
+                                <th>Condition</th>
+                                <th>Status</th>
+                                <th>Availability</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wishlistTable"></tbody>
+                    </table>
+                </div>
+                <div id="wishlistEmpty" class="text-center text-muted py-4" style="display:none;">
+                    No wishlist cards yet.
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="../js/storage.js"></script>
+<script src="../js/wishlist.js"></script>
+</body>
+</html>

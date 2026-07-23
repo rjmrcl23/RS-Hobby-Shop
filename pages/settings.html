@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | RS Hobby Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+        <div class="menu-label">MAIN</div>
+        <nav>
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="collection.html"><i class="fa-solid fa-folder"></i> My Collection</a>
+            <a href="marketplace.html"><i class="fa-solid fa-store"></i> Marketplace</a>
+            <a href="myshop.html"><i class="fa-solid fa-shop"></i> My Shop</a>
+            <a href="auctions.html"><i class="fa-solid fa-gavel"></i> Auctions</a>
+            <a href="wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> Orders</a>
+            <a class="active" href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a>
+            <a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        </nav>
+        <div class="profile">
+            <div class="profile-avatar">RJ</div>
+            <div>
+                <h6>RJ Marcelo</h6>
+                <small>Collector & Seller</small>
+            </div>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="topbar mb-4 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+            <div>
+                <h2>⚙️ Settings</h2>
+                <p class="text-muted mb-0">Manage account preferences, workspace settings, and app integrations.</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="dashboard.html" class="btn btn-outline-light"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="collection.html" class="btn btn-primary"><i class="fa-solid fa-folder"></i> My Collection</a>
+            </div>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm bg-dark border-secondary">
+                    <div class="card-body">
+                        <h6>Account</h6>
+                        <p class="text-muted mb-2">Update your name, email, and profile details.</p>
+                        <ul class="list-group list-group-flush text-white-50">
+                            <li class="list-group-item bg-transparent border-secondary">Name: RJ Marcelo</li>
+                            <li class="list-group-item bg-transparent border-secondary">Email: rj@example.com</li>
+                            <li class="list-group-item bg-transparent border-secondary">Role: Collector & Seller</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm bg-dark border-secondary">
+                    <div class="card-body">
+                        <h6>Privacy</h6>
+                        <p class="text-muted mb-2">Control what information is stored and shared.</p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="privacyNotifications" checked>
+                            <label class="form-check-label" for="privacyNotifications">Enable notifications</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="privacyAnalytics" checked>
+                            <label class="form-check-label" for="privacyAnalytics">Allow usage analytics</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="privacyBackup">
+                            <label class="form-check-label" for="privacyBackup">Auto backup to local storage</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm bg-dark border-secondary">
+                    <div class="card-body">
+                        <h6>Appearance</h6>
+                        <p class="text-muted mb-2">Set defaults for your collection dashboard and cards view.</p>
+                        <div class="mb-3">
+                            <label class="form-label">Dashboard Theme</label>
+                            <select id="settingsTheme" class="form-select">
+                                <option selected>Dark</option>
+                                <option>Light</option>
+                                <option>Auto</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Default sort</label>
+                            <select id="settingsDefaultSort" class="form-select">
+                                <option selected>Newest first</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="mb-3">Application Settings</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Default currency</label>
+                                    <input type="text" class="form-control" value="PHP" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Default marketplace filter</label>
+                                    <input type="text" class="form-control" value="All Cards" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Preferred card view</label>
+                                    <input type="text" class="form-control" value="Grid" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Default order status</label>
+                                    <input type="text" class="form-control" value="Pending" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-end">
+                            <div id="settingsFeedback" class="text-success me-3 d-none" role="status"></div>
+                            <button id="saveSettings" type="button" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

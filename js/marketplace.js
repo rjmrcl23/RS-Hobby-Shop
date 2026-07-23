@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const wishlistButton = document.getElementById("wishlistButton");
     const contactButton = document.getElementById("contactButton");
     const shareButton = document.getElementById("shareButton");
+    const listingActionFeedback = document.getElementById("listingActionFeedback");
 
     let activeListing = null;
 
     function getMarketplaceCards() {
-        return getCards().filter(card => card.status === "For Sale");
+        return getCards();
     }
 
     function formatPrice(amount) {
@@ -74,10 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderBrandOptions(cards) {
+        const selectedBrand = brandFilter.value || "all";
         const brands = Array.from(new Set(cards.map(c => c.brand).filter(Boolean))).sort();
-        brandFilter.innerHTML = `<option value="all">All Brands</option>` + brands.map(brand => `
+        brandFilter.innerHTML = `<option value="all" selected>All Brands</option>` + brands.map(brand => `
             <option value="${brand}">${brand}</option>
         `).join("");
+        brandFilter.value = brands.includes(selectedBrand) ? selectedBrand : "all";
     }
 
     function sortListings(items) {
@@ -124,6 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function isSameCard(card, item) {
+        if (card.id && item.id) {
+            return card.id === item.id;
+        }
+
+        return card.player === item.player &&
+            card.brand === item.brand &&
+            card.set === item.set &&
+            card.year === item.year &&
+            card.number === item.number &&
+            card.condition === item.condition &&
+            String(card.value) === String(item.value) &&
+            card.image === item.image;
+    }
+
     function openListingModal(item) {
         if (!item) return;
         activeListing = item;
@@ -139,21 +157,50 @@ document.addEventListener("DOMContentLoaded", () => {
         listingModalQuantity.textContent = "1";
         listingModalNotes.textContent = item.notes || "No additional notes.";
         listingModalStatus.textContent = item.status || "N/A";
+        wishlistButton.textContent = item.status === "Wishlist" ? "Remove from Wishlist" : "Add to Wishlist";
+        listingActionFeedback?.classList.add("d-none");
 
         const modal = new bootstrap.Modal(listingModal);
         modal.show();
     }
 
-    wishlistButton.addEventListener("click", () => {
-        alert("Add to Wishlist is not implemented yet.");
-    });
+    function toggleWishlist() {
+        if (!activeListing) return;
+        const cards = getCards();
+        const index = cards.findIndex(card => isSameCard(card, activeListing));
+        if (index === -1) return;
+
+        cards[index].status = cards[index].status === "Wishlist" ? "PC" : "Wishlist";
+        cards[index].updatedAt = Date.now();
+        saveCards(cards);
+
+        activeListing = cards[index];
+        openListingModal(activeListing);
+        renderMarketplace();
+    }
+
+    wishlistButton.addEventListener("click", toggleWishlist);
 
     contactButton.addEventListener("click", () => {
-        alert("Contact Seller is not implemented yet.");
+        if (!activeListing || !listingActionFeedback) return;
+        listingActionFeedback.textContent = `Contact ${activeListing.seller || "RS Hobby Shop"}: seller contact will be available when multi-user accounts are connected.`;
+        listingActionFeedback.classList.remove("d-none");
     });
 
-    shareButton.addEventListener("click", () => {
-        alert("Share Listing is not implemented yet.");
+    shareButton.addEventListener("click", async () => {
+        if (!activeListing || !listingActionFeedback) return;
+        const shareText = `${activeListing.player || "Card"} — ${activeListing.brand || ""} ${activeListing.set || ""} (${formatPrice(activeListing.value)})`;
+        try {
+            if (navigator.share) {
+                await navigator.share({ title: "RS Hobby Shop Listing", text: shareText });
+            } else if (navigator.clipboard) {
+                await navigator.clipboard.writeText(shareText);
+            }
+            listingActionFeedback.textContent = "Listing details are ready to share.";
+        } catch (error) {
+            listingActionFeedback.textContent = "Sharing was cancelled.";
+        }
+        listingActionFeedback.classList.remove("d-none");
     });
 
     [searchInput, brandFilter, statusFilter, conditionFilter, priceOrder].forEach(elem => {

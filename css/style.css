@@ -62,3 +62,72 @@ body{
     min-height:100vh;
 
 }
+
+/* Bootstrap cards otherwise keep Bootstrap's dark-on-light text tokens.
+   Set the card theme once so every routed page stays readable in RS Hobby Shop's dark UI. */
+.card{
+    --bs-card-bg:var(--card);
+    --bs-card-color:var(--text);
+    --bs-card-cap-bg:transparent;
+    --bs-card-cap-color:var(--text);
+    background:var(--card);
+    color:var(--text);
+    border-color:var(--border);
+}
+
+.card .text-muted,
+.main-content .text-muted{
+    color:var(--text-light) !important;
+}
+
+.card .list-group-item{
+    color:var(--text);
+    border-color:var(--border) !important;
+}
+
+.main-content .form-control,
+.main-content .form-select{
+    background-color:#101b2d;
+    color:var(--text);
+    border-color:var(--border);
+}
+
+.main-content .form-control:focus,
+.main-content .form-select:focus{
+    background-color:#101b2d;
+    color:var(--text);
+    border-color:var(--primary);
+    box-shadow:0 0 0 .2rem rgba(39,214,209,.15);
+}
+
+.main-content .form-control::placeholder{
+    color:#91a0b7;
+}
+
+/* Chart.js needs a sized parent when maintainAspectRatio is disabled.
+   Without this boundary its resize observer can continually grow the canvas. */
+.analytics-chart-wrap{
+    position:relative;
+    height:280px;
+    min-height:280px;
+    max-height:280px;
+}
+
+.analytics-chart-wrap canvas{
+    display:block;
+    width:100% !important;
+    height:100% !important;
+    max-height:280px !important;
+}
+
+@media (max-width:576px){
+    .analytics-chart-wrap{
+        height:230px;
+        min-height:230px;
+        max-height:230px;
+    }
+
+    .analytics-chart-wrap canvas{
+        max-height:230px !important;
+    }
+}

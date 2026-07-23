@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | RS Hobby Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+        <div class="menu-label">MAIN</div>
+        <nav>
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="collection.html"><i class="fa-solid fa-folder"></i> My Collection</a>
+            <a href="marketplace.html"><i class="fa-solid fa-store"></i> Marketplace</a>
+            <a href="myshop.html"><i class="fa-solid fa-shop"></i> My Shop</a>
+            <a href="auctions.html"><i class="fa-solid fa-gavel"></i> Auctions</a>
+            <a href="wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> Orders</a>
+            <a href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a>
+            <a class="active" href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <div class="topbar mb-4">
+            <div>
+                <h2>📈 Analytics</h2>
+                <p class="text-muted mb-0">Analytics continues to use the collection data already stored locally.</p>
+            </div>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Total Cards</h6>
+                        <h2 id="analyticsTotalCards">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Portfolio Value</h6>
+                        <h2 id="analyticsTotalValue">₱0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Wishlist</h6>
+                        <h2 id="analyticsWishlistCount">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Auction</h6>
+                        <h2 id="analyticsAuctionCount">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Orders</h6>
+                        <h2 id="analyticsOrderCount">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Total Revenue</h6>
+                        <h2 id="analyticsRevenue">₱0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Total Expenses</h6>
+                        <h2 id="analyticsExpenses">₱0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h6>Profit</h6>
+                        <h2 id="analyticsProfit">₱0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="mb-3">Revenue Trend</h6>
+                        <div class="analytics-chart-wrap">
+                            <canvas id="analyticsRevenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="mb-3">Collection Growth</h6>
+                        <div class="analytics-chart-wrap">
+                            <canvas id="analyticsGrowthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="mb-3">Top 5 Most Valuable Cards</h6>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Brand</th>
+                                        <th>Set</th>
+                                        <th>Status</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="analyticsTopCards"></tbody>
+                            </table>
+                        </div>
+                        <div id="analyticsEmpty" class="text-center text-muted py-4" style="display:none;">
+                            No cards available yet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="mb-3">Top Selling Players</h6>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Orders</th>
+                                        <th>Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="analyticsTopPlayers"></tbody>
+                            </table>
+                        </div>
+                        <div id="analyticsPlayersEmpty" class="text-center text-muted py-4" style="display:none;">
+                            No sales data yet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="../js/storage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/analytics.js"></script>
+</body>
+</html>

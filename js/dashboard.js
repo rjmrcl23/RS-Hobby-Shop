@@ -137,6 +137,55 @@ document.addEventListener("DOMContentLoaded", () => {
     // Call once on load
     renderDashboard();
 
+    const exportBackupButton = document.getElementById("exportBackup");
+    const importBackupInput = document.getElementById("importBackupInput");
+    const backupStatus = document.getElementById("backupStatus");
+
+    function updateBackupStatus(message, isError = false) {
+        if (!backupStatus) return;
+        backupStatus.textContent = message;
+        backupStatus.classList.toggle("text-danger", isError);
+        backupStatus.classList.toggle("text-muted", !isError);
+    }
+
+    function downloadBackup() {
+        const data = getBackupData();
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `rs-hobby-shop-backup-${new Date().toISOString().slice(0, 10)}.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        updateBackupStatus("Backup downloaded successfully.");
+    }
+
+    function importBackup(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const backup = JSON.parse(reader.result);
+                if (restoreBackupData(backup)) {
+                    updateBackupStatus("Backup restored successfully.");
+                    renderDashboard();
+                } else {
+                    updateBackupStatus("Invalid backup format.", true);
+                }
+            } catch (error) {
+                updateBackupStatus("Failed to parse backup file.", true);
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    exportBackupButton?.addEventListener("click", downloadBackup);
+    importBackupInput?.addEventListener("change", importBackup);
+
     // Debounced renderer to avoid excessive reflows when multiple events fire rapidly
     let _dashboardDebounceTimer = null;
     function debouncedRenderDashboard(delay = 200) {
@@ -150,55 +199,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for cross-tab storage changes and internal updates, but debounce actual rendering
     window.addEventListener("storage", () => debouncedRenderDashboard());
     window.addEventListener("cards:updated", () => debouncedRenderDashboard());
-
-    // Debug helper: simulate add -> edit -> delete sequence to verify dashboard updates.
-    // Usage: open browser console and run `window._simulateCardChanges()`
-    window._simulateCardChanges = async function simulateCardChanges() {
-        try {
-            console.log("[dashboard] Starting simulation: add -> edit -> delete");
-            const initial = getCards();
-            const cards = getCards();
-
-            // Add
-            const testCard = {
-                player: "SIM Test",
-                brand: "SIM",
-                set: "SIMSET",
-                year: "2026",
-                number: "SIM1",
-                condition: "Mint",
-                status: "PC",
-                value: "1",
-                image: ""
-            };
-            cards.push(testCard);
-            saveCards(cards);
-            console.log("[dashboard] Added test card. Count:", getCards().length);
-
-            // wait for render
-            await new Promise(r => setTimeout(r, 300));
-
-            // Edit last card
-            const edited = getCards();
-            const idx = edited.length - 1;
-            if (idx >= 0) {
-                edited[idx].player = "SIM Test Edited";
-                saveCards(edited);
-                console.log("[dashboard] Edited test card.");
-            }
-
-            await new Promise(r => setTimeout(r, 300));
-
-            // Delete last card
-            const afterEdit = getCards();
-            afterEdit.pop();
-            saveCards(afterEdit);
-            console.log("[dashboard] Deleted test card. Count:", getCards().length);
-
-            console.log("[dashboard] Simulation complete.");
-        } catch (err) {
-            console.error("[dashboard] Simulation error:", err);
-        }
-    };
 
 });
