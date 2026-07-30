@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auctions | RS Hobby Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../images/logos/logo.png" alt="RS Hobby Shop">
+        </div>
+        <div class="menu-label">MAIN</div>
+        <nav>
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="collection.html"><i class="fa-solid fa-folder"></i> My Collection</a>
+            <a href="marketplace.html"><i class="fa-solid fa-store"></i> Marketplace</a>
+            <a href="myshop.html"><i class="fa-solid fa-shop"></i> My Shop</a>
+            <a class="active" href="auctions.html"><i class="fa-solid fa-gavel"></i> Auctions</a>
+            <a href="wishlist.html"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> Orders</a>
+            <a href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a>
+            <a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <div class="topbar mb-4">
+            <div>
+                <h2>⚔️ Auctions</h2>
+                <p class="text-muted mb-0">Bid on cards marked as Auction from your collection.</p>
+            </div>
+        </div>
+        <div class="card bg-dark border-secondary">
+            <div class="card-body">
+                <p class="mb-0 text-muted">Auction entries are derived from cards with the Auction status so the module stays connected to the main collection.</p>
+            </div>
+        </div>
+        <div id="auctionsList" class="row g-3 mt-3"></div>
+        <div id="auctionsEmpty" class="text-center text-muted py-5" style="display:none;">No auction cards yet.</div>
+    </main>
+</div>
+
+<div class="modal fade" id="auctionModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="auctionModalTitle">Auction Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <img id="auctionModalImage" src="../images/logos/logo.png" alt="Auction card" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-7">
+                        <h5 id="auctionModalPlayer">Player</h5>
+                        <p class="text-muted mb-1"><strong>Brand:</strong> <span id="auctionModalBrand">–</span></p>
+                        <p class="text-muted mb-1"><strong>Set:</strong> <span id="auctionModalSet">–</span></p>
+                        <p class="text-muted mb-1"><strong>Year:</strong> <span id="auctionModalYear">–</span></p>
+                        <p class="text-muted mb-1"><strong>Condition:</strong> <span id="auctionModalCondition">–</span></p>
+                        <p class="text-muted mb-1"><strong>Status:</strong> <span id="auctionModalStatus">–</span></p>
+                        <p class="text-muted mb-1"><strong>Time Remaining:</strong> <span id="auctionModalTimer">–</span></p>
+                        <p class="mb-1"><strong>Reserve Price:</strong> <span id="auctionModalReserve">₱0</span></p>
+                        <p class="mb-1"><strong>Current Bid:</strong> <span id="auctionModalCurrentBid">₱0</span></p>
+                        <p class="mb-1"><strong>Highest Bidder:</strong> <span id="auctionModalBidder">No bids yet</span></p>
+                        <div class="mt-3">
+                            <label for="auctionBidAmount" class="form-label">Your Bid</label>
+                            <input id="auctionBidAmount" type="number" class="form-control" min="0" placeholder="Enter bid amount">
+                            <div id="auctionBidFeedback" class="form-text text-danger d-none"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h6>Bid History</h6>
+                    <div id="auctionBidHistory" class="list-group list-group-flush"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="auctionPlaceBid" type="button" class="btn btn-primary">Place Bid</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/auctions.js"></script>
+</body>
+</html>

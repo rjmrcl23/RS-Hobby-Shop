@@ -2,18 +2,15 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>RS Hobby Shop</title>
 
     <!-- Bootstrap -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Font -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -21,208 +18,390 @@
         rel="stylesheet">
 
     <!-- Font Awesome -->
-
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!-- Custom CSS -->
-
+    <!-- Existing Styles -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Public Styles -->
+    <link rel="stylesheet" href="css/public.css">
 </head>
 
 <body>
 
-<div class="app">
+    <!-- ================= NAVBAR ================= -->
 
-    <!-- ========================= -->
-    <!-- SIDEBAR                   -->
-    <!-- ========================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top rs-navbar">
 
-    <aside class="sidebar">
+        <div class="container">
 
-        <div class="logo text-center">
+            <a class="navbar-brand fw-bold" href="index.html">
 
-            <img src="images/logos/logo.png" alt="RS Hobby Shop">
+                <img src="images/logos/logo.png"
+                    alt="RS Hobby Shop"
+                    class="logo">
 
-        </div>
+                RS Hobby Shop
 
-        <div class="menu-label">
-            MAIN
-        </div>
-
-        <nav>
-
-            <a class="active" href="#">
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
             </a>
 
-            <a href="pages/collection.html">
-                <i class="fa-solid fa-folder"></i>
-                <span>My Collection</span>
-            </a>
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
 
-            <a href="#">
-                <i class="fa-solid fa-store"></i>
-                <span>Marketplace</span>
-            </a>
+                <span class="navbar-toggler-icon"></span>
 
-            <a href="#">
-                <i class="fa-solid fa-shop"></i>
-                <span>My Shop</span>
-            </a>
+            </button>
 
-            <a href="#">
-                <i class="fa-solid fa-gavel"></i>
-                <span>Auctions</span>
-            </a>
+            <div class="collapse navbar-collapse"
+                id="mainNavbar">
 
-            <a href="#">
-                <i class="fa-solid fa-heart"></i>
-                <span>Wishlist</span>
-            </a>
+                <ul class="navbar-nav ms-auto">
 
-            <a href="#">
-                <i class="fa-solid fa-box"></i>
-                <span>Orders</span>
-            </a>
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                            href="index.html">
+                            Home
+                        </a>
+                    </li>
 
-            <a href="#">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>Analytics</span>
-            </a>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="marketplace.html">
+                            Marketplace
+                        </a>
+                    </li>
 
-            <a href="#">
-                <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
-            </a>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="auctions.html">
+                            Auctions
+                        </a>
+                    </li>
 
-        </nav>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="#about">
+                            About
+                        </a>
+                    </li>
 
-        <div class="profile">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="#contact">
+                            Contact
+                        </a>
+                    </li>
 
-            <div class="profile-avatar">
-                RJ
-            </div>
+                    <li class="nav-item ms-lg-3">
 
-            <div>
+                        <a class="btn btn-success"
+                            href="admin.html">
 
-                <h6>RJ Marcelo</h6>
+                            <i class="fa-solid fa-right-to-bracket"></i>
 
-                <small>Collector & Seller</small>
+                            Login
 
-            </div>
+                        </a>
 
-        </div>
+                    </li>
 
-    </aside>
-
-    <!-- ========================= -->
-    <!-- MAIN CONTENT              -->
-    <!-- ========================= -->
-
-    <main class="main-content">
-
-        <!-- TOP BAR -->
-
-        <header class="topbar">
-
-            <div>
-
-                <h2>Good Afternoon, RJ 👋</h2>
-
-                <p>Welcome back to RS Hobby Shop</p>
+                </ul>
 
             </div>
 
-            <div class="top-right">
+        </div>
 
-                <div class="search-box">
+    </nav>
 
-                    <i class="fa-solid fa-magnifying-glass"></i>
+    <!-- ================= HERO ================= -->
 
-                    <input
-                        type="text"
-                        placeholder="Search cards, players, sets...">
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-7">
+
+                    <span class="badge bg-success mb-3">
+
+                        Philippines Trading Card Marketplace
+
+                    </span>
+
+                    <h1>
+
+                        Buy, Sell & Collect
+                        Trading Cards
+
+                    </h1>
+
+                    <p>
+
+                        RS Hobby Shop is your marketplace for
+                        Basketball, Pokémon, One Piece,
+                        Funko, and more.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="marketplace.html"
+                            class="btn btn-success btn-lg">
+
+                            Browse Marketplace
+
+                        </a>
+
+                        <a href="auctions.html"
+                            class="btn btn-outline-light btn-lg">
+
+                            Live Auctions
+
+                        </a>
+
+                    </div>
 
                 </div>
 
-                <button class="notify">
+                <div class="col-lg-5">
 
-                    <i class="fa-solid fa-bell"></i>
+                    <div class="hero-card">
 
-                </button>
+                        <h4>
+
+                            Search Cards
+
+                        </h4>
+
+                        <input
+                            id="searchBox"
+                            class="form-control form-control-lg"
+                            placeholder="Player, Team, Card Set...">
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </header>
+        </div>
 
-        <!-- DASHBOARD -->
+    </section>
 
-        <section class="dashboard">
+    <!-- ================= MARKETPLACE ================= -->
+
+    <section id="marketplacePreview"
+        class="section-space">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+
+                    Featured Marketplace
+
+                </h2>
+
+                <p>
+
+                    Latest listings from collectors.
+
+                </p>
+
+            </div>
+
+            <div id="marketplaceCards"
+                class="row g-4">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= AUCTIONS ================= -->
+
+    <section id="auctionPreview"
+        class="section-space bg-dark">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+
+                    Live Auctions
+
+                </h2>
+
+                <p>
+
+                    Ending Soon
+
+                </p>
+
+            </div>
+
+            <div id="auctionCards"
+                class="row g-4">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="section-space">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+
+                    Categories
+
+                </h2>
+
+            </div>
 
             <div class="row g-4">
 
-                <div class="col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h5>Portfolio Value</h5>
-
-                        <h2>₱0.00</h2>
-
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        🏀
+                        <span>Basketball</span>
                     </div>
-
                 </div>
 
-                <div class="col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h5>Total Cards</h5>
-
-                        <h2>0</h2>
-
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        ⚡
+                        <span>Pokémon</span>
                     </div>
-
                 </div>
 
-                <div class="col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h5>For Sale</h5>
-
-                        <h2>0</h2>
-
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        ☠️
+                        <span>One Piece</span>
                     </div>
-
                 </div>
 
-                <div class="col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h5>Auctions</h5>
-
-                        <h2>0</h2>
-
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        🎮
+                        <span>Gaming</span>
                     </div>
+                </div>
 
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        🎁
+                        <span>Funko</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-lg-2">
+                    <div class="category-box">
+                        📦
+                        <span>Accessories</span>
+                    </div>
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
 
-</div>
+    <!-- ================= ABOUT ================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <section id="about"
+        class="section-space">
 
-<script src="js/app.js"></script>
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+
+                    About RS Hobby Shop
+
+                </h2>
+
+                <p>
+
+                    Built by collectors for collectors.
+
+                    Our mission is to provide the safest and
+                    easiest place to buy, sell and auction
+                    trading cards in the Philippines.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact"
+        class="section-space bg-dark">
+
+        <div class="container text-center">
+
+            <h2>
+
+                Ready to Start?
+
+            </h2>
+
+            <p>
+
+                Join the RS Hobby Shop community today.
+
+            </p>
+
+            <a href="admin.html"
+                class="btn btn-success btn-lg">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+
+                © 2026 RS Hobby Shop
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/public.js"></script>
 
 </body>
 

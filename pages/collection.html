@@ -60,6 +60,11 @@
                 Orders
             </a>
 
+            <a href="settings.html">
+                <i class="fa-solid fa-cog"></i>
+                Settings
+            </a>
+
             <a href="analytics.html">
                 <i class="fa-solid fa-chart-line"></i>
                 Analytics
@@ -127,6 +132,17 @@
 
         </div>
 
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <button id="collectionExportJson" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-download"></i> Export JSON</button>
+            <button id="collectionExportCsv" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+            <label class="btn btn-outline-light btn-sm mb-0"><i class="fa-solid fa-upload"></i> Import JSON<input id="collectionImportInput" type="file" accept="application/json" hidden></label>
+            <select id="bulkStatus" class="form-select form-select-sm" style="width:auto"><option value="">Set selected status…</option><option>PC</option><option>For Sale</option><option>Auction</option><option>Wishlist</option></select>
+            <button id="bulkApply" class="btn btn-outline-info btn-sm">Apply</button>
+            <button id="bulkDelete" class="btn btn-outline-danger btn-sm">Delete selected</button>
+            <button id="undoDelete" class="btn btn-outline-warning btn-sm" disabled>Undo delete</button>
+            <span id="collectionFeedback" class="small align-self-center text-muted" role="status"></span>
+        </div>
+
         <div class="row g-3 mb-4">
 
             <div class="col-md-3">
@@ -178,6 +194,7 @@
                         <thead>
 
                         <tr>
+                            <th width="35"><input id="selectAllCards" type="checkbox" aria-label="Select all cards"></th>
                             <th width="90">Photo</th>
                             <th data-sort-field="player">Player</th>
                             <th data-sort-field="brand">Brand</th>
@@ -258,6 +275,11 @@
                             <div class="col-md-6">
                                 <label class="form-label">Player</label>
                                 <input id="player" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Notes</label>
+                                <textarea id="notes" class="form-control" rows="2" placeholder="Optional card details"></textarea>
                             </div>
 
                             <div class="col-md-6">
